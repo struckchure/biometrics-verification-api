@@ -13,7 +13,6 @@ COPY . .
 
 RUN make install
 
-RUN go install
 RUN go mod tidy
 
 CMD [ "go", "run", "." ]
