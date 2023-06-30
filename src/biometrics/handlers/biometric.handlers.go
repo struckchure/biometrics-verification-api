@@ -9,7 +9,7 @@ import (
 	"github.com/gofiber/fiber/v2"
 	"github.com/google/uuid"
 
-	biometric_service "struckchure.bv_api/src/biometrics/services"
+	biometric_service "pkg.struckchure.com/bv_api/src/biometrics/services"
 )
 
 // TODO: add function to utility

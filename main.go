@@ -1,8 +1,8 @@
 package main
 
 import (
-	app "struckchure.bv_api/src"
-	"struckchure.bv_api/src/biometrics"
+	app "pkg.struckchure.com/bv_api/src"
+	"pkg.struckchure.com/bv_api/src/biometrics"
 )
 
 func main() {

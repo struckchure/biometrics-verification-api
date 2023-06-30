@@ -1,8 +1,8 @@
 package biometric_routes
 
 import (
-	app "struckchure.bv_api/src"
-	biomoterics_handlers "struckchure.bv_api/src/biometrics/handlers"
+	app "pkg.struckchure.com/bv_api/src"
+	biomoterics_handlers "pkg.struckchure.com/bv_api/src/biometrics/handlers"
 )
 
 func BiometricsRoutes() {

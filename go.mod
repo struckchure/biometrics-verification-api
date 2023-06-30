@@ -1,4 +1,4 @@
-module struckchure.bv_api
+module pkg.struckchure.com/bv_api
 
 go 1.20
 

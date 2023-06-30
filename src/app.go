@@ -5,7 +5,6 @@ import (
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/logger"
-	"github.com/qinains/fastergoding"
 )
 
 var (
@@ -15,7 +14,7 @@ var (
 
 func GetApp() *fiber.App {
 	appOnce.Do(func() {
-		fastergoding.Run()
+		// fastergoding.Run()
 
 		app = fiber.New()
 		app.Use(logger.New())
