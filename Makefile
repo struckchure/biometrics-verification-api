@@ -241,7 +241,7 @@ sudo_pre_install_clean:
 	rm -rf /usr/local/include/opencv*
 
 # Do everything.
-install: deps download sudo_pre_install_clean build sudo_install clean verify
+install: deps download sudo_pre_install_clean build sudo_install clean
 
 # Do everything on Raspbian.
 install_raspi: deps download build_raspi sudo_install clean

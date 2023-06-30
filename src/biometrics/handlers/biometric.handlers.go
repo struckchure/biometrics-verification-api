@@ -22,38 +22,45 @@ func getBasePath() string {
 
 // TODO: raise errors where necessary
 func FingerPrintMatchHandler(c *fiber.Ctx) error {
+	target, _ := c.FormFile("target")
+	sample, _ := c.FormFile("sample")
+
+	if (target == nil) || (sample == nil) {
+		c.SendStatus(400)
+
+		return c.JSON(fiber.Map{"error": "sample and target are required"})
+	}
+
 	projectPath := getBasePath()
 
 	// TODO: add to file upload utility
 	os.Mkdir(fmt.Sprintf("%s/%s", projectPath, "/tmp/"), 0755)
 
 	// TODO: write utilty to upload file
-	img1, _ := c.FormFile("target")
-	img1Name, _ := uuid.NewUUID()
-	img1Path := fmt.Sprintf(
+	targetName, _ := uuid.NewUUID()
+	targetPath := fmt.Sprintf(
 		"%s/tmp/%s.%s",
 		projectPath,
-		img1Name.String(),
-		strings.Split(img1.Filename, ".")[1],
+		targetName.String(),
+		strings.Split(target.Filename, ".")[1],
 	)
-	c.SaveFile(img1, img1Path)
+	c.SaveFile(target, targetPath)
 
 	// TODO: write utilty to upload file
-	img2, _ := c.FormFile("sample")
-	img2Name, _ := uuid.NewUUID()
-	img2Path := fmt.Sprintf(
+	sampleName, _ := uuid.NewUUID()
+	samplePath := fmt.Sprintf(
 		"%s/tmp/%s.%s",
 		projectPath,
-		img2Name.String(),
-		strings.Split(img2.Filename, ".")[1],
+		sampleName.String(),
+		strings.Split(sample.Filename, ".")[1],
 	)
-	c.SaveFile(img2, img2Path)
+	c.SaveFile(sample, samplePath)
 
-	matchScore := biometric_service.FingerPrintMatch(img1Path, img2Path)
+	matchScore := biometric_service.FingerPrintMatch(targetPath, samplePath)
 
 	// TODO: add to util for save file to remove after 2 minutes (*)
-	os.Remove(img1Path)
-	os.Remove(img2Path)
+	os.Remove(targetPath)
+	os.Remove(samplePath)
 
 	return c.JSON(fiber.Map{"matchScore": matchScore})
 }
