@@ -14,5 +14,6 @@ COPY . .
 RUN make install
 
 RUN go mod download
+RUN go build -o ./bv_api
 
-CMD [ "go", "run", "." ]
+CMD [ "./bv_api" ]
